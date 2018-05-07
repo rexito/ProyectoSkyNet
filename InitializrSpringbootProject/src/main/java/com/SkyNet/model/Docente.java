@@ -19,7 +19,7 @@ import org.hibernate.validator.constraints.Length;
  */
 @Entity
 public class Docente {
-    
+    //sacowe//
     public Docente(){
     }
     
