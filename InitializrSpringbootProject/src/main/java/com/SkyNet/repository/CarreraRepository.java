@@ -13,5 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author don_w
  */
 public interface CarreraRepository extends JpaRepository<Carrera, Integer>{
+
+    public Carrera findOne(Integer id);
     
 }

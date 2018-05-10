@@ -13,5 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author don_w
  */
 public interface HorarioRepository extends JpaRepository<Horario, Integer>{
+
+    public Horario findOne(Integer id);
     
 }

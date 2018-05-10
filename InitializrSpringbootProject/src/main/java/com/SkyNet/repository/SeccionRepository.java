@@ -14,5 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author don_w
  */
 public interface SeccionRepository extends JpaRepository<Seccion, Integer>{
+
+    public Seccion findOne(Integer id);
     
 }

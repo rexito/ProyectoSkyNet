@@ -14,5 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author don_w
  */
 public interface JornadaRepository extends JpaRepository<Jornada, Integer>{
+
+    public Jornada findOne(Integer id);
     
 }

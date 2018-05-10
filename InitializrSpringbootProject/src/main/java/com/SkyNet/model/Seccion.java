@@ -21,7 +21,7 @@ import javax.validation.constraints.NotNull;
 public class Seccion {
     
     public Seccion (int idSeccion, String nombreSeccion, Jornada jornada, Carrera carrera){
-        this.id_Seccion = idSeccion;
+        this.idSeccion = idSeccion;
         this.nombreSeccion = nombreSeccion;
         this.jornada = jornada;
         this.carrera = carrera;
@@ -29,7 +29,7 @@ public class Seccion {
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
-    private int id_Seccion;
+    private int idSeccion;
     
     @NotNull (message = "Campo Obligatorio")
     private String nombreSeccion;
@@ -42,12 +42,12 @@ public class Seccion {
     @ManyToOne
     private Carrera carrera;
 
-    public int getId_Seccion() {
-        return id_Seccion;
+    public int getIdSeccion() {
+        return idSeccion;
     }
 
-    public void setId_Seccion(int id_Seccion) {
-        this.id_Seccion = id_Seccion;
+    public void setIdSeccion(int id_Seccion) {
+        this.idSeccion = idSeccion;
     }
 
     public String getNombreSeccion() {

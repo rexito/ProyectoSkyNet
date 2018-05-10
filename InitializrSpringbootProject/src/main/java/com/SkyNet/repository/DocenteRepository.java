@@ -13,5 +13,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author don_w
  */
 public interface DocenteRepository extends JpaRepository<Docente, Integer>{
+
+    public Docente findOne(Integer id);
     
 }

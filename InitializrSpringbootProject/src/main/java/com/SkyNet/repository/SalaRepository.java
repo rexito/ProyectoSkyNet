@@ -14,5 +14,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
  * @author don_w
  */
 public interface SalaRepository extends JpaRepository<Sala, Integer>{
+
+    public Sala findOne(Integer id);
     
 }
