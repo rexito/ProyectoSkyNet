@@ -14,6 +14,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface AdministradorRepository extends JpaRepository<Administrador, Integer> {
 
-    public Administrador findOne(Integer id);
+    
     
 }
