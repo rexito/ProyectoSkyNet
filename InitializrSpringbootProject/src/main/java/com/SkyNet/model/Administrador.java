@@ -5,6 +5,7 @@
  */
 package com.SkyNet.model;
 
+import java.io.Serializable;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -16,7 +17,7 @@ import javax.validation.constraints.NotNull;
  * @author don_w
  */
 @Entity
-public class Administrador {
+public class Administrador implements Serializable {
     
     public Administrador (int idAdministrador, String nombreAdministrador, String apellidoAdministrador){
         this.idAdministrador = idAdministrador;

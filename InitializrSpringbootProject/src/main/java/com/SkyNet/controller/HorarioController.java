@@ -31,20 +31,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class HorarioController {
     
     @Autowired
-    private HorarioRepository repository;
+    private HorarioRepository HorarioRepository;
     
     //Petición GET (Lista horarios)
     @CrossOrigin
     @RequestMapping(value = "/skynet/horario/", method = GET)
     public Collection<Horario> getHorario() {
-        return repository.findAll();
+        return HorarioRepository.findAll();
     }
     
     //Petición GET  (Un horario)
     @CrossOrigin
     @RequestMapping(value = "/skynet/horario/{id}", method = GET)
     public Horario getUnHorario(@PathVariable Integer id) {
-        return repository.findOne(id);
+        return HorarioRepository.findOne(id);
     }
     
     // Petición POST (Nuevo horaio)
@@ -52,7 +52,7 @@ public class HorarioController {
     @RequestMapping(value = "/skynet/horario/", method = POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Horario nuevoHorario(@Valid @RequestBody Horario horario) {
-        repository.save(horario);
+        HorarioRepository.save(horario);
         return horario;
     }
     
@@ -60,11 +60,11 @@ public class HorarioController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/horario/{id}", method = PUT)
     public ResponseEntity<Horario> actualizarCarrera(@Valid @PathVariable Integer id, @RequestBody Horario actualizarHorario) {
-        Horario horario = repository.findOne(id);
+        Horario horario = HorarioRepository.findOne(id);
         if (horario != null) {
 
             actualizarHorario.setIdHorario(id);
-            repository.save(actualizarHorario);
+            HorarioRepository.save(actualizarHorario);
             return new ResponseEntity<>(horario, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -75,8 +75,8 @@ public class HorarioController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/horario/{id}", method = DELETE)
     public ResponseEntity<Horario> eliminarHorario(@PathVariable Integer id) {
-        Horario horario = repository.findOne(id);
-        repository.deleteById(id);
+        Horario horario = HorarioRepository.findOne(id);
+        HorarioRepository.delete(id);
         if (horario != null) {
             return new ResponseEntity<>(horario, HttpStatus.OK);
         } else {

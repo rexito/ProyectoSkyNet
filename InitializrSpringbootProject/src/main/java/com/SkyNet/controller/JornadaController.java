@@ -31,20 +31,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class JornadaController {
     
     @Autowired
-    private JornadaRepository repository;
+    private JornadaRepository JornadaRepository;
     
     //Petición GET (Lista jornadas)
     @CrossOrigin
     @RequestMapping(value = "/skynet/jornada/", method = GET)
     public Collection<Jornada> getJornada() {
-        return repository.findAll();
+        return JornadaRepository.findAll();
     }
     
     //Petición GET  (Una jornada)
     @CrossOrigin
     @RequestMapping(value = "/skynet/jornada/{id}", method = GET)
     public Jornada getUnaJornada(@PathVariable Integer id) {
-        return repository.findOne(id);
+        return JornadaRepository.findOne(id);
     }
     
     // Petición POST (Nuevo Jornada)
@@ -52,7 +52,7 @@ public class JornadaController {
     @RequestMapping(value = "/skynet/jornada/", method = POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Jornada nuevaJornada(@Valid @RequestBody Jornada jornada) {
-        repository.save(jornada);
+        JornadaRepository.save(jornada);
         return jornada;
     }
     
@@ -60,11 +60,11 @@ public class JornadaController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/jornada/{id}", method = PUT)
     public ResponseEntity<Jornada> actualizarJornada(@Valid @PathVariable Integer id, @RequestBody Jornada actualizarJornada) {
-        Jornada jornada = repository.findOne(id);
+        Jornada jornada = JornadaRepository.findOne(id);
         if (jornada != null) {
 
             actualizarJornada.setIdJornada(id);
-            repository.save(actualizarJornada);
+            JornadaRepository.save(actualizarJornada);
             return new ResponseEntity<>(jornada, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -75,8 +75,8 @@ public class JornadaController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/jornada/{id}", method = DELETE)
     public ResponseEntity<Jornada> eliminarJornada(@PathVariable Integer id) {
-        Jornada jornada = repository.findOne(id);
-        repository.deleteById(id);
+        Jornada jornada = JornadaRepository.findOne(id);
+        JornadaRepository.delete(id);
         if (jornada != null) {
             return new ResponseEntity<>(jornada, HttpStatus.OK);
         } else {

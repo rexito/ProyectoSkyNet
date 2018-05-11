@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import static org.springframework.web.bind.annotation.RequestMethod.GET;
 import org.springframework.web.bind.annotation.RestController;
 import static org.springframework.web.bind.annotation.RequestMethod.DELETE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -32,20 +31,20 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 public class AdministradorController {
     
     @Autowired
-    private AdministradorRepository repository;
+    private AdministradorRepository AdministradorRepository;
     
     //Petición GET (Lista Administradores)
     @CrossOrigin
     @RequestMapping(value = "/skynet/administrador/", method = GET)
     public Collection<Administrador> getAdministrador() {
-        return repository.findAll();
+        return AdministradorRepository.findAll();
     }
     
     //Petición GET  (Un Administrador)
     @CrossOrigin
     @RequestMapping(value = "/skynet/administrador/{id}", method = GET)
     public Administrador getUnAdministrador(@PathVariable Integer id) {
-        return repository.findOne(id);
+        return AdministradorRepository.findOne(id);
     }
     
     // Petición POST (Nuevo Administrador)
@@ -53,7 +52,7 @@ public class AdministradorController {
     @RequestMapping(value = "/skynet/administrador/", method = POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Administrador nuevoAdministrador(@Valid @RequestBody Administrador administrador) {
-        repository.save(administrador);
+        AdministradorRepository.save(administrador);
         return administrador;
     }
     
@@ -61,11 +60,11 @@ public class AdministradorController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/administrador/{id}", method = PUT)
     public ResponseEntity<Administrador> actualizarAdministrador(@Valid @PathVariable Integer id, @RequestBody Administrador actualizarAdministrador) {
-        Administrador administrador = repository.findOne(id);
+        Administrador administrador = AdministradorRepository.findOne(id);
         if (administrador != null) {
 
             actualizarAdministrador.setIdAdministrador(id);
-            repository.save(actualizarAdministrador);
+            AdministradorRepository.save(actualizarAdministrador);
             return new ResponseEntity<>(administrador, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -76,8 +75,8 @@ public class AdministradorController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/administrador/{id}", method = DELETE)
     public ResponseEntity<Administrador> eliminarAdministrador(@PathVariable Integer id) {
-        Administrador administrador = repository.findOne(id);
-        repository.deleteById(id);
+        Administrador administrador = AdministradorRepository.findOne(id);
+        AdministradorRepository.delete(id);
         if (administrador != null) {
             return new ResponseEntity<>(administrador, HttpStatus.OK);
         } else {

@@ -31,20 +31,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class SeccionController {
     
     @Autowired
-    private SeccionRepository repository;
+    private SeccionRepository SeccionRepository;
     
     //Petición GET (Lista secciones)
     @CrossOrigin
     @RequestMapping(value = "/skynet/seccion/", method = GET)
     public Collection<Seccion> getSeccion() {
-        return repository.findAll();
+        return SeccionRepository.findAll();
     }
     
     //Petición GET  (Una seccion)
     @CrossOrigin
     @RequestMapping(value = "/skynet/seccion/{id}", method = GET)
     public Seccion getUnaSeccion(@PathVariable Integer id) {
-        return repository.findOne(id);
+        return SeccionRepository.findOne(id);
     }
     
     // Petición POST (Nuevo seccion)
@@ -52,7 +52,7 @@ public class SeccionController {
     @RequestMapping(value = "/skynet/seccion/", method = POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Seccion nuevaSeccion(@Valid @RequestBody Seccion seccion) {
-        repository.save(seccion);
+        SeccionRepository.save(seccion);
         return seccion;
     }
     
@@ -60,11 +60,11 @@ public class SeccionController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/seccion/{id}", method = PUT)
     public ResponseEntity<Seccion> actualziarSeccion(@Valid @PathVariable Integer id, @RequestBody Seccion actualizarSeccion) {
-        Seccion seccion = repository.findOne(id);
+        Seccion seccion = SeccionRepository.findOne(id);
         if (seccion != null) {
 
             actualizarSeccion.setIdSeccion(id);
-            repository.save(actualizarSeccion);
+            SeccionRepository.save(actualizarSeccion);
             return new ResponseEntity<>(seccion, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -75,8 +75,8 @@ public class SeccionController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/seccion/{id}", method = DELETE)
     public ResponseEntity<Seccion> eliminarSeccion(@PathVariable Integer id) {
-        Seccion seccion = repository.findOne(id);
-        repository.deleteById(id);
+        Seccion seccion = SeccionRepository.findOne(id);
+        SeccionRepository.delete(id);
         if (seccion != null) {
             return new ResponseEntity<>(seccion, HttpStatus.OK);
         } else {

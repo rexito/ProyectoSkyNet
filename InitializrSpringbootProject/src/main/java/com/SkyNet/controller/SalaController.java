@@ -31,20 +31,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class SalaController {
     
     @Autowired
-    public SalaRepository repository;
+    public SalaRepository SalaRepository;
     
     //Petición GET (Lista salas)
     @CrossOrigin
     @RequestMapping(value = "/skynet/sala/", method = GET)
     public Collection<Sala> getSala() {
-        return repository.findAll();
+        return SalaRepository.findAll();
     }
     
     //Petición GET  (Una sala)
     @CrossOrigin
     @RequestMapping(value = "/skynet/sala/{id}", method = GET)
     public Sala getUnaSala(@PathVariable Integer id) {
-        return repository.findOne(id);
+        return SalaRepository.findOne(id);
     }
     
     // Petición POST (Nuevo sala)
@@ -52,7 +52,7 @@ public class SalaController {
     @RequestMapping(value = "/skynet/sala/", method = POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Sala nuevaJornada(@Valid @RequestBody Sala sala) {
-        repository.save(sala);
+        SalaRepository.save(sala);
         return sala;
     }
     
@@ -60,11 +60,11 @@ public class SalaController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/sala/{id}", method = PUT)
     public ResponseEntity<Sala> actualizarSala(@Valid @PathVariable Integer id, @RequestBody Sala actualizarSala) {
-        Sala sala = repository.findOne(id);
+        Sala sala = SalaRepository.findOne(id);
         if (sala != null) {
 
             actualizarSala.setIdSala(id);
-            repository.save(actualizarSala);
+            SalaRepository.save(actualizarSala);
             return new ResponseEntity<>(sala, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -75,8 +75,8 @@ public class SalaController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/sala/{id}", method = DELETE)
     public ResponseEntity<Sala> eliminarSala(@PathVariable Integer id) {
-        Sala sala = repository.findOne(id);
-        repository.deleteById(id);
+        Sala sala = SalaRepository.findOne(id);
+        SalaRepository.delete(id);
         if (sala != null) {
             return new ResponseEntity<>(sala, HttpStatus.OK);
         } else {

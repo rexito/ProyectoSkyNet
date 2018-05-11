@@ -5,7 +5,6 @@
  */
 package com.SkyNet.repository;
 import com.SkyNet.model.Horario;
-import java.io.Serializable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 /**

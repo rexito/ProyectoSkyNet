@@ -32,20 +32,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class CarreraController {
     
     @Autowired
-    private CarreraRepository repository;
+    private CarreraRepository CarreraRepository;
     
     //Petición GET (Lista carreras)
     @CrossOrigin
     @RequestMapping(value = "/skynet/carrera/", method = GET)
     public Collection<Carrera> getCarrera() {
-        return repository.findAll();
+        return CarreraRepository.findAll();
     }
     
     //Petición GET  (Una Carrera)
     @CrossOrigin
     @RequestMapping(value = "/skynet/carrera/{id}", method = GET)
     public Carrera getUnaCarrera(@PathVariable Integer id) {
-        return repository.findOne(id);
+        return CarreraRepository.findOne(id);
     }
     
     // Petición POST (Nuevo Carrera)
@@ -53,7 +53,7 @@ public class CarreraController {
     @RequestMapping(value = "/skynet/carrera/", method = POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Carrera nuevaCarrera(@Valid @RequestBody Carrera carrera) {
-        repository.save(carrera);
+        CarreraRepository.save(carrera);
         return carrera;
     }
     
@@ -61,11 +61,11 @@ public class CarreraController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/carrera/{id}", method = PUT)
     public ResponseEntity<Carrera> actualizarCarrera(@Valid @PathVariable Integer id, @RequestBody Carrera actualizarCarrera) {
-        Carrera carrera = repository.findOne(id);
+        Carrera carrera = CarreraRepository.findOne(id);
         if (carrera != null) {
 
             actualizarCarrera.setIdCarrera(id);
-            repository.save(actualizarCarrera);
+            CarreraRepository.save(actualizarCarrera);
             return new ResponseEntity<>(carrera, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -76,8 +76,8 @@ public class CarreraController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/carrera/{id}", method = DELETE)
     public ResponseEntity<Carrera> eliminarCarrera(@PathVariable Integer id) {
-        Carrera carrera = repository.findOne(id);
-        repository.deleteById(id);
+        Carrera carrera = CarreraRepository.findOne(id);
+        CarreraRepository.delete(id);
         if (carrera != null) {
             return new ResponseEntity<>(carrera, HttpStatus.OK);
         } else {

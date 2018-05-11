@@ -7,6 +7,7 @@ package com.SkyNet.repository;
 
 import com.SkyNet.model.Administrador;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.repository.CrudRepository;
 
 /**
  *
@@ -14,6 +15,4 @@ import org.springframework.data.jpa.repository.JpaRepository;
  */
 public interface AdministradorRepository extends JpaRepository<Administrador, Integer> {
 
-    
-    
 }

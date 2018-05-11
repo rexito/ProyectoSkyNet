@@ -9,7 +9,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -35,11 +37,14 @@ public class Asignatura {
     private String nombreAsignatura;
     
     @NotNull (message = "Campo Obligatorio")
-    @ManyToOne
+  
+    @JoinColumn(name = "id_seccion")
+    @OneToOne
     private Seccion seccion;
     
     @NotNull
-    @ManyToOne
+    @JoinColumn(name = "id_docente")
+    @OneToOne
     private Docente docente;
 
     public int getIdAsignatura() {

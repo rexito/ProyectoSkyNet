@@ -31,20 +31,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class AsignaturaController {
     
     @Autowired
-    private AsignaturaRepository repository;
+    private AsignaturaRepository AsignaturaRepository;
     
     //Petición GET (Lista asignaturas)
     @CrossOrigin
     @RequestMapping(value = "/skynet/asignatura/", method = GET)
     public Collection<Asignatura> getAsignatura() {
-        return repository.findAll();
+        return AsignaturaRepository.findAll();
     }
     
     //Petición GET  (Un Asignatura)
     @CrossOrigin
     @RequestMapping(value = "/skynet/asignatura/{id}", method = GET)
     public Asignatura getUnaAsignatura(@PathVariable Integer id) {
-        return repository.findOne(id);
+        return AsignaturaRepository.findOne(id);
     }
     
     // Petición POST (Nuevo Asignatura)
@@ -52,7 +52,7 @@ public class AsignaturaController {
     @RequestMapping(value = "/skynet/asignatura/", method = POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Asignatura nuevoAsignatura(@Valid @RequestBody Asignatura asignatura) {
-        repository.save(asignatura);
+        AsignaturaRepository.save(asignatura);
         return asignatura;
     }
     
@@ -60,11 +60,11 @@ public class AsignaturaController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/asignatura/{id}", method = PUT)
     public ResponseEntity<Asignatura> actualizarAsignatura(@Valid @PathVariable Integer id, @RequestBody Asignatura actualizarAsignatura) {
-        Asignatura asignatura = repository.findOne(id);
+        Asignatura asignatura = AsignaturaRepository.findOne(id);
         if (asignatura != null) {
 
             actualizarAsignatura.setIdAsignatura(id);
-            repository.save(actualizarAsignatura);
+            AsignaturaRepository.save(actualizarAsignatura);
             return new ResponseEntity<>(asignatura, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -75,8 +75,8 @@ public class AsignaturaController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/asignatura/{id}", method = DELETE)
     public ResponseEntity<Asignatura> eliminarAsignatura(@PathVariable Integer id) {
-        Asignatura asignatura = repository.findOne(id);
-        repository.delete(id);
+        Asignatura asignatura = AsignaturaRepository.findOne(id);
+        AsignaturaRepository.delete(id);
         if (asignatura != null) {
             return new ResponseEntity<>(asignatura, HttpStatus.OK);
         } else {

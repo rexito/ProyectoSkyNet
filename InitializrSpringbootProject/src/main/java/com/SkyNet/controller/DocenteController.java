@@ -31,20 +31,20 @@ import org.springframework.web.bind.annotation.RestController;
 public class DocenteController {
     
     @Autowired
-    private DocenteRepository repository;
+    private DocenteRepository DocenteRepository;
     
     //Petición GET (Lista docnete)
     @CrossOrigin
     @RequestMapping(value = "/skynet/docente/", method = GET)
     public Collection<Docente> getDocente() {
-        return repository.findAll();
+        return DocenteRepository.findAll();
     }
     
     //Petición GET  (Una docente)
     @CrossOrigin
     @RequestMapping(value = "/skynet/docente/{id}", method = GET)
     public Docente getUnDocente(@PathVariable Integer id) {
-        return repository.findOne(id);
+        return DocenteRepository.findOne(id);
     }
     
     // Petición POST (Nuevo docente)
@@ -52,7 +52,7 @@ public class DocenteController {
     @RequestMapping(value = "/skynet/docente/", method = POST)
     @ResponseStatus(HttpStatus.CREATED)
     public Docente nuevoDocente(@Valid @RequestBody Docente docente) {
-        repository.save(docente);
+        DocenteRepository.save(docente);
         return docente;
     }
     
@@ -60,11 +60,11 @@ public class DocenteController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/docente/{id}", method = PUT)
     public ResponseEntity<Docente> actualizarDocente(@Valid @PathVariable Integer id, @RequestBody Docente actualizarDocente) {
-        Docente docente = repository.findOne(id);
+        Docente docente = DocenteRepository.findOne(id);
         if (docente != null) {
 
             actualizarDocente.setIdDocente(id);
-            repository.save(actualizarDocente);
+            DocenteRepository.save(actualizarDocente);
             return new ResponseEntity<>(docente, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -75,8 +75,8 @@ public class DocenteController {
     @CrossOrigin
     @RequestMapping(value = "/skynet/docente/{id}", method = DELETE)
     public ResponseEntity<Docente> eliminarDocente(@PathVariable Integer id) {
-        Docente docente = repository.findOne(id);
-        repository.deleteById(id);
+        Docente docente = DocenteRepository.findOne(id);
+        DocenteRepository.delete(id);
         if (docente != null) {
             return new ResponseEntity<>(docente, HttpStatus.OK);
         } else {
