@@ -11,6 +11,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotNull;
 
 /**
@@ -19,11 +20,10 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Horario {
-    public Horario (int idHorario,Asignatura asignatura,Sala sala, Administrador administrador){
+    public Horario (int idHorario,Asignatura asignatura,Sala sala){
         this.idHorario = idHorario;
         this.asignatura = asignatura;
         this.sala = sala;
-        this.administrador = administrador;
     }
     
     @Id
@@ -38,12 +38,10 @@ public class Horario {
     private Asignatura asignatura;
     
     @NotNull (message = "Campo Obligatorio")
-    @ManyToOne
+    @OneToOne
     private Sala sala;
     
-    @NotNull (message = "Campo Obligatorio")
-    @ManyToOne
-    private Administrador administrador;
+ 
     
 
     public int getIdHorario() {
@@ -70,13 +68,6 @@ public class Horario {
         this.sala = sala;
     }
 
-    public Administrador getAdministrador() {
-        return administrador;
-    }
-
-    public void setAdministrador(Administrador administrador) {
-        this.administrador = administrador;
-    }
     
     
 }

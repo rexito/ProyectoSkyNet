@@ -5,14 +5,13 @@
  */
 package com.SkyNet.repository;
 import com.SkyNet.model.Horario;
+import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 
 /**
  *
  * @author don_w
  */
 public interface HorarioRepository extends JpaRepository<Horario, Integer>{
-
-    public Horario findOne(Integer id);
-    
 }

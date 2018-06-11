@@ -9,6 +9,7 @@ import com.SkyNet.model.Horario;
 import com.SkyNet.repository.HorarioRepository;
 import java.util.Collection;
 import javax.validation.Valid;
+import static jdk.nashorn.internal.runtime.Debug.id;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -59,7 +60,7 @@ public class HorarioController {
     // Petición PUT (Editar horario)
     @CrossOrigin
     @RequestMapping(value = "/skynet/horario/{id}", method = PUT)
-    public ResponseEntity<Horario> actualizarCarrera(@Valid @PathVariable Integer id, @RequestBody Horario actualizarHorario) {
+    public ResponseEntity<Horario> actualizarHorario(@Valid @PathVariable Integer id, @RequestBody Horario actualizarHorario) {
         Horario horario = HorarioRepository.findOne(id);
         if (horario != null) {
 
@@ -83,5 +84,8 @@ public class HorarioController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
+    
+    
+  
     
 }

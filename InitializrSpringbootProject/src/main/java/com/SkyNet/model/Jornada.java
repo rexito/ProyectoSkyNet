@@ -19,8 +19,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 public class Jornada {
     
-    public Jornada(int idJornada, String detalleJornada){
+   public Jornada(int idJornada, String nombreJornada, String detalleJornada) {
         this.idJornada = idJornada;
+        this.nombreJornada = nombreJornada;
         this.detalleJornada = detalleJornada;
     }
     @Id
@@ -33,6 +34,9 @@ public class Jornada {
     @NotNull (message = "Campo Obligatorio")
     private String detalleJornada;
 
+    public Jornada() {
+    }
+    
     public int getIdJornada() {
         return idJornada;
     }
