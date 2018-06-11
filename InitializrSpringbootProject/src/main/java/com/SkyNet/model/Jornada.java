@@ -45,6 +45,16 @@ public class Jornada {
         this.idJornada = idJornada;
     }
 
+    public String getNombreJornada() {
+        return nombreJornada;
+    }
+
+    public void setNombreJornada(String nombreJornada) {
+        this.nombreJornada = nombreJornada;
+    }
+
+    
+    
     public String getDetalleJornada() {
         return detalleJornada;
     }
