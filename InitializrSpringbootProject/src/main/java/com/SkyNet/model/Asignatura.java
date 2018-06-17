@@ -28,6 +28,10 @@ public class Asignatura {
         this.seccion = seccion;
         this.docente = docente;        
     }
+
+    public Asignatura() {
+    }
+    
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)

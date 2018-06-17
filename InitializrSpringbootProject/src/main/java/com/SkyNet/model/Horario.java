@@ -25,6 +25,11 @@ public class Horario {
         this.asignatura = asignatura;
         this.sala = sala;
     }
+
+    public Horario() {
+    }
+    
+    
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)

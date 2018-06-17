@@ -24,6 +24,11 @@ public class Sala {
         this.numeroSala = numeroSala;
         this.piso = piso;
     }
+
+    public Sala() {
+    }
+    
+    
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)

@@ -24,6 +24,11 @@ public class Administrador implements Serializable {
         this.nombreAdministrador = nombreAdministrador;
         this.apellidoAdministrador = apellidoAdministrador;
     }
+
+    public Administrador() {
+    }
+    
+    
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)

@@ -24,6 +24,9 @@ public class Jornada {
         this.nombreJornada = nombreJornada;
         this.detalleJornada = detalleJornada;
     }
+   
+   
+   
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int idJornada;

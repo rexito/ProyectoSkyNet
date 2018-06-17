@@ -26,6 +26,11 @@ public class Seccion {
         this.jornada = jornada;
         this.carrera = carrera;
     }
+
+    public Seccion() {
+    }
+    
+    
     
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)

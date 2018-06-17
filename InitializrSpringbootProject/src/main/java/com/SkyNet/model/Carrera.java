@@ -17,11 +17,18 @@ import javax.validation.constraints.NotNull;
  */
 @Entity
 public class Carrera {
+    
     public Carrera(int idCarrera, String nombreCarrera, String detalleCarrera){
         this.idCarrera = idCarrera;
         this.nombreCarrera = nombreCarrera;
         this.detalleCarrera = detalleCarrera;
     }
+
+    public Carrera() {
+    }
+    
+    
+    
     @Id
     @GeneratedValue (strategy = GenerationType.AUTO)
     private int idCarrera;
